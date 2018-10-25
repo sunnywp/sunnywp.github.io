@@ -156,6 +156,131 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css-2D" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/25/css-2D/">css3 2D转换</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/25/css-2D/" class="archive-article-date">
+  	<time datetime="2018-10-25T10:58:42.085Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过CSS3的2D转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸。</p>
+<h1 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h1><pre><code>transform: none|transform-functions;
+</code></pre><p>其中变换方法有如下几类：</p>
+<ul>
+<li>matrix(n,n,n,n,n,n)，定义 2D 转换，使用六个值的矩阵。</li>
+<li>translate(x,y)，定义 2D 转换，沿着 X 和 Y 轴移动元素。</li>
+<li>translateX(n) ，定义 2D 转换，沿着 X 轴移动元素。</li>
+<li>translateY(n) ，定义 2D 转换，沿着 Y 轴移动元素。</li>
+<li>scale(x,y) ，定义 2D 缩放转换，改变元素的宽度和高度。</li>
+<li>scaleX(n) ，定义 2D 缩放转换，改变元素的宽度。</li>
+<li>scaleY(n) ，定义 2D 缩放转换，改变元素的高度。</li>
+<li>rotate(angle) ，定义 2D 旋转，在参数中规定角度。</li>
+<li>skew(x-angle,y-angle) ，定义 2D 倾斜转换，沿着 X 和 Y 轴。</li>
+<li>skewX(angle) ，定义 2D 倾斜转换，沿着 X 轴。</li>
+<li>skewY(angle) ，定义 2D 倾斜转换，沿着 Y 轴。</li>
+</ul>
+<h2 id="1-translate（x-y）"><a href="#1-translate（x-y）" class="headerlink" title="1.translate（x,y）"></a>1.translate（x,y）</h2><p>元素平移，其中</p>
+<ul>
+<li>x是水平移动，正值向右，负值向左</li>
+<li>y是水平移动，正值向下，负值向上</li>
+</ul>
+<p>例子：</p>
+<pre><code>transform: translate(50px,20px);
+-ms-transform: translate(50px,20px);        /* IE 9 */
+-webkit-transform: translate(50px,20px);    /* Safari and Chrome */
+-o-transform: translate(50px,20px);         /* Opera */
+-moz-transform: translate(50px,20px);       /* Firefox */
+</code></pre><h2 id="2-scale-x-y"><a href="#2-scale-x-y" class="headerlink" title="2.scale(x,y)"></a>2.scale(x,y)</h2><p>元素尺寸大小缩放，可为小数，其中</p>
+<ul>
+<li>x是宽度缩放</li>
+<li>y是高度缩放</li>
+</ul>
+<p>例子：</p>
+<pre><code>transform: scale(2,2.4);
+-ms-transform: scale(2,2.4);
+-webkit-transform: scale(2,2.4);
+-o-transform: scale(2,2.4);
+-moz-transform: scale(2,2.4);
+</code></pre><h2 id="3-rotate-angle"><a href="#3-rotate-angle" class="headerlink" title="3.rotate(angle)"></a>3.rotate(angle)</h2><p>元素旋转一定角度，正值沿顺时针旋转，负值沿逆时针旋转  </p>
+<p>例子：</p>
+<pre><code>transform: skewX(30deg);
+-ms-transform: skewX(30deg);
+-webkit-transform: skewX(30deg);
+-o-transform: skewX(30deg);
+-moz-transform: skewX(30deg);
+</code></pre><h2 id="4-skew-x-angle-y-angle"><a href="#4-skew-x-angle-y-angle" class="headerlink" title="4.skew(x-angle,y-angle)"></a>4.skew(x-angle,y-angle)</h2><p>沿着 X 和 Y 轴的 2D 倾斜转换<br>先按照元素两个中轴倾斜固定的角度，再将2根中轴线向两边平移形成</p>
+<pre><code>transform: skewY(30deg);
+-ms-transform: skewY(30deg);
+-webkit-transform: skewY(30deg);
+-o-transform: skewY(30deg);
+-moz-transform: skewY(30deg);
+</code></pre><p>两个中轴只有一根倾斜：</p>
+<pre><code>transform: skewX(30deg);
+-ms-transform: skewX(30deg);
+-webkit-transform: skewX(30deg);
+-o-transform: skewX(30deg);
+-moz-transform: skewX(30deg);
+
+transform: skewY(30deg);
+-ms-transform: skewY(30deg);
+-webkit-transform: skewY(30deg);
+-o-transform: skewY(30deg);
+-moz-transform: skewY(30deg);
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/25/css-2D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-markdown-grammar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
