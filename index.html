@@ -256,7 +256,32 @@
 </tbody>
 </table>
 <p>然而上表并不完全准确，比如谷歌Chrome这个神奇的存在，笔者使用的66版本，F5刷新，并不会重置max-age=0,依然命中强缓存，但是Linux中使用的Chrome 50版本则会重置max-age=0</p>
-
+<h1 id="项目实践"><a href="#项目实践" class="headerlink" title="项目实践"></a>项目实践</h1><p>前端缓存让人既爱又恨，本质上缓存是一种优化，但是处理不好，就有可能造成很多不必要的困扰。一直以来，我们项目前端存在如下两个问题：  </p>
+<ul>
+<li>前端换包之后，必须清除缓存之后才能生效</li>
+<li>后台微服务倒换之后，默认返回index.html</li>
+</ul>
+<p>修改nginx配置之后完美解决上述两个问题</p>
+<pre><code>location / {
+    index  /uniportal/index.html;
+}
+location /uniportal {
+  try_files $uri @default_page;
+}
+location /uniportal/ {
+  try_files $uri @default_page;
+}
+location /uniportal/login {
+    try_files $uri$args $uri$args/ $uri/ @default_page;
+}
+location /uniportal/main {
+    try_files $uri$args $uri$args/ $uri/ @default_page;
+}
+location @default_page {
+   add_header Cache-Control no-store;
+   try_files  /uniportal/index.html =404;
+}
+</code></pre>
       
 
       
