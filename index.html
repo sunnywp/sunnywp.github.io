@@ -204,7 +204,7 @@
 </ul>
 <h1 id="expires"><a href="#expires" class="headerlink" title="expires"></a>expires</h1><p>Expires是http1.0提出的一个表示资源过期时间的header，它描述的是一个绝对时间，由服务器返回，用GMT格式的字符串表示，如：Expires:Thu, 31 Dec 2016 23:55:55 GMT<br>读取缓存数据条件：缓存过期时间（服务器）&lt; 当前时间（客户端）<br>缺点：Expires是较老的强缓存管理header，由于它是服务器返回的一个绝对时间，这样存在一个问题，如果客户端的时间与服务器的时间相差很大（比如时钟不同步，或者跨时区），那么误差就很大，所以在HTTP 1.1版开始，使用Cache-Control: max-age=秒替代。</p>
 <h1 id="cache-control"><a href="#cache-control" class="headerlink" title="cache-control"></a>cache-control</h1><p>Cache-Control描述的是一个相对时间，在进行缓存命中的时候，都是利用客户端时间进行判断，所以相比较Expires，Cache-Control的缓存管理更有效，安全一些。<br>读取缓存数据条件：上次缓存时间（客户端）+max-age &lt; 当前时间（客户端）<br>Cache-Control值可以是public、private、no-cache、no- store、no-transform、must-revalidate、proxy-revalidate、max-age</p>
-<p>各个消息中的指令含义如下：<br>Public指示响应可被任何缓存区缓存。<br>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当前用户的部分响应消息，此响应消息对于其他用户的请求无效。<br>no-cache指示请求或响应消息不能缓存，该选项并不是说可以设置”不缓存“，而是需要和服务器确认<br>no-store在请求消息中发送将使得请求和响应消息都不使用缓存，完全不存下來。<br>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。上次缓存时间（客户端的）+max-age（64200s）&lt;客户端当前时间<br>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应。<br>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。<br>注意：这两个header可以只启用一个，也可以同时启用，当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires  </p>
+<p>各个消息中的指令含义如下：<br>Public指示响应可被任何缓存区缓存。<br>Private指示对于单个用户的整个或部分响应消息，不能被共享缓存处理。这允许服务器仅仅描述当前用户的部分响应消息，此响应消息对于其他用户的请求无效。<br>no-cache指示请求或响应消息不能缓存，该选项并不是说可以设置”不缓存“，而是需要和服务器确认<br>no-store在请求消息中发送将使得请求和响应消息都不使用缓存，完全不存下來。<br>max-age指示客户机可以接收生存期不大于指定时间（以秒为单位）的响应。上次缓存时间（客户端的）+max-age（64200s）&lt;客户端当前时间<br>min-fresh指示客户机可以接收响应时间小于当前时间加上指定时间的响应。<br>max-stale指示客户机可以接收超出超时期间的响应消息。如果指定max-stale消息的值，那么客户机可以接收超出超时期指定值之内的响应消息。<br>must-revalidate 告诉浏览器、缓存服务器，本地副本过期前，可以使用本地副本；本地副本一旦过期，必须去源服务器进行有效性校验。<br>注意：这两个header可以只启用一个，也可以同时启用，当response header中，Expires和Cache-Control同时存在时，Cache-Control优先级高于Expires  </p>
 <h1 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a>Last-Modified/If-Modified-Since</h1><p>Last-Modified/If-Modified-Since要配合Cache-Control使用。<br>Last-Modified：标示这个响应资源的最后修改时间。web服务器在响应请求时，告诉浏览器资源的最后修改时间。<br>If-Modified-Since：当资源过期时（强缓存失效），发现资源具有Last-Modified声明，则再次向web服务器请求时带上头 If-Modified-Since，表示请求时间。web服务器收到请求后发现有头If-Modified-Since 则与被请求资源的最后修改时间进行比对。若最后修改时间较新，说明资源又被改动过，则响应整片资源内容（写在响应消息包体内），HTTP 200；若最后修改时间较旧，说明资源无新修改，则响应HTTP 304 (无需包体，节省浏览)，告知浏览器继续使用所保存的cache。<br>缺点：</p>
 <ul>
 <li>Last-Modified标注的最后修改只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，它将不能准确标注文件的修改时间（无法及时更新文件）  </li>
@@ -217,41 +217,41 @@
 <h1 id="用户行为与缓存"><a href="#用户行为与缓存" class="headerlink" title="用户行为与缓存"></a>用户行为与缓存</h1><table>
 <thead>
 <tr>
-<th>用户操作</th>
+<th style="text-align:center">用户操作</th>
 <th style="text-align:center">Expires/Cache Control</th>
-<th style="text-align:right">Last-Modified/Etag</th>
+<th style="text-align:center">Last-Modified/Etag</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>地址栏回车</td>
+<td style="text-align:center">地址栏回车</td>
 <td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td style="text-align:center">有效</td>
 </tr>
 <tr>
-<td>页面链接跳转</td>
+<td style="text-align:center">页面链接跳转</td>
 <td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td style="text-align:center">有效</td>
 </tr>
 <tr>
-<td>新开窗口</td>
+<td style="text-align:center">新开窗口</td>
 <td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td style="text-align:center">有效</td>
 </tr>
 <tr>
-<td>前进/后退</td>
+<td style="text-align:center">前进/后退</td>
 <td style="text-align:center">有效</td>
-<td style="text-align:right">有效</td>
+<td style="text-align:center">有效</td>
 </tr>
 <tr>
-<td>F5刷新</td>
+<td style="text-align:center">F5刷新</td>
 <td style="text-align:center">无效，浏览器重置max-age=0</td>
-<td style="text-align:right">有效</td>
+<td style="text-align:center">有效</td>
 </tr>
 <tr>
-<td>Ctrl + F5</td>
+<td style="text-align:center">Ctrl + F5</td>
 <td style="text-align:center">无效，重置cache-control:no cache</td>
-<td style="text-align:right">无效，请求头丢弃该选项</td>
+<td style="text-align:center">无效，请求头丢弃该选项</td>
 </tr>
 </tbody>
 </table>
