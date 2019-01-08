@@ -156,6 +156,141 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-npm-and-yarn" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/01/08/npm-and-yarn/">npm和yarn的区别</a>
+    </h1>
+  
+
+        
+        <a href="/2019/01/08/npm-and-yarn/" class="archive-article-date">
+  	<time datetime="2019-01-08T03:12:35.385Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-01-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Yarn是什么？"><a href="#Yarn是什么？" class="headerlink" title="Yarn是什么？"></a>Yarn是什么？</h1><p>Yarn是由Facebook、Google、Exponent 和 Tilde 联合推出了一个新的 JS 包管理工具 ，正如官方文档中写的，Yarn 是为了弥补 npm 的一些缺陷而出现的。这句话让我想起了使用npm时的坑了：  </p>
+<ul>
+<li><p><code>npm install</code>的时候巨慢。特别是新的项目拉下来要等半天，删除node_modules，重新install的时候依旧如此。  </p>
+</li>
+<li><p>同一个项目，安装的时候无法保持一致性。由于package.json文件中版本号的特点，下面三个版本号在安装的时候代表不同的含义。  </p>
+<pre><code>&quot;5.0.3&quot;,      
+&quot;~5.0.3&quot;,      
+&quot;^5.0.3&quot;
+</code></pre></li>
+</ul>
+<p>“5.0.3”表示安装指定的5.0.3版本，“～5.0.3”表示安装5.0.X中最新的版本，“^5.0.3”表示安装5.X.X中最新的版本。这就麻烦了，常常会出现同一个项目，有的同事是OK的，有的同事会由于安装的版本不一致出现bug。</p>
+<ul>
+<li>安装的时候，包会在同一时间下载和安装，中途某个时候，一个包抛出了一个错误，但是npm会继续下载和安装包。因为npm会把所有的日志输出到终端，有关错误包的错误信息就会在一大堆npm打印的警告中丢失掉，并且你甚至永远不会注意到实际发生的错误。</li>
+</ul>
+<p>带着这些坑，我开始了解Yarn的优势及其解决的问题。</p>
+<h1 id="Yarn的优点"><a href="#Yarn的优点" class="headerlink" title="Yarn的优点"></a>Yarn的优点</h1><ul>
+<li><p><strong>速度快</strong> 。速度快主要来自以下两个方面：  </p>
+<ol>
+<li>并行安装：无论 npm 还是 Yarn 在执行包的安装时，都会执行一系列任务。npm 是按照队列执行每个 package，也就是说必须要等到当前 package 安装完成之后，才能继续后面的安装。而 Yarn 是同步执行所有任务，提高了性能。</li>
+<li>离线模式：如果之前已经安装过一个软件包，用Yarn再次安装时之间从缓存中获取，就不用像npm那样再从网络下载了。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><strong>安装版本统一</strong>：为了防止拉取到不同的版本，Yarn 有一个锁定文件 (lock file) 记录了被确切安装上的模块的版本号。每次只要新增了一个模块，Yarn 就会创建（或更新）yarn.lock 这个文件。这么做就保证了，每一次拉取同一个项目依赖时，使用的都是一样的模块版本。npm 其实也有办法实现处处使用相同版本的 packages，但需要开发者执行 npm shrinkwrap 命令。这个命令将会生成一个锁定文件，在执行 npm install 的时候，该锁定文件会先被读取，和 Yarn 读取 yarn.lock 文件一个道理。npm 和 Yarn 两者的不同之处在于，Yarn 默认会生成这样的锁定文件，而 npm 要通过 shrinkwrap 命令生成 npm-shrinkwrap.json 文件，只有当这个文件存在的时候，packages 版本信息才会被记录和更新。</p>
+</li>
+<li><p><strong>更简洁的输出</strong>：npm 的输出信息比较冗长。在执行 npm install <package> 的时候，命令行里会不断地打印出所有被安装上的依赖。相比之下，Yarn 简洁太多：默认情况下，结合了 emoji直观且直接地打印出必要的信息，也提供了一些命令供开发者查询额外的安装信息。</package></p>
+</li>
+<li><p><strong>多注册来源处理：</strong>所有的依赖包，不管他被不同的库间接关联引用多少次，安装这个包时，只会从一个注册来源去装，要么是 npm 要么是 bower, 防止出现混乱不一致。</p>
+</li>
+<li><p><strong>更好的语义化：</strong> yarn改变了一些npm命令的名称，比如 yarn add/remove，感觉上比 npm 原本的 install/uninstall 要更清晰。</p>
+</li>
+</ul>
+<h1 id="Yarn和npm命令对比"><a href="#Yarn和npm命令对比" class="headerlink" title="Yarn和npm命令对比"></a>Yarn和npm命令对比</h1><table>
+<thead>
+<tr>
+<th style="text-align:center"><strong>npm</strong></th>
+<th style="text-align:center"><strong>yarn</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">npm install</td>
+<td style="text-align:center">yarn</td>
+</tr>
+<tr>
+<td style="text-align:center">npm install react –save</td>
+<td style="text-align:center">yarn add react</td>
+</tr>
+<tr>
+<td style="text-align:center">npm uninstall react –save</td>
+<td style="text-align:center">yarn remove react</td>
+</tr>
+<tr>
+<td style="text-align:center">npm install react –save-dev</td>
+<td style="text-align:center">yarn add react –dev</td>
+</tr>
+<tr>
+<td style="text-align:center">npm update –save</td>
+<td style="text-align:center">yarn upgrade</td>
+</tr>
+</tbody>
+</table>
+<h1 id="npm的未来：npm5-0"><a href="#npm的未来：npm5-0" class="headerlink" title="npm的未来：npm5.0"></a>npm的未来：npm5.0</h1><ul>
+<li><p>有了yarn的压力之后，npm做了一些类似的改进。</p>
+<ol>
+<li>默认新增了类似yarn.lock的 package-lock.json；</li>
+<li>git 依赖支持优化：这个特性在需要安装大量内部项目（例如在没有自建源的内网开发），或需要使用某些依赖的未发布版本时很有用。在这之前可能需要使用指定 commit_id 的方式来控制版本。</li>
+<li>文件依赖优化：在之前的版本，如果将本地目录作为依赖来安装，将会把文件目录作为副本拷贝到 node_modules 中。而在 npm5 中，将改为使用创建 symlinks 的方式来实现（使用本地 tarball 包除外），而不再执行文件拷贝。这将会提升安装速度。目前yarn还不支持。</li>
+</ol>
+</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在npm5.0之前，yarn的优势特别明显。但是在npm之后，通过以上一系列对比，我们可以看到 npm5 在速度和使用上确实有了很大提升，值得尝试，不过还没有超过yarn。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/01/08/npm-and-yarn/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-angular-on-IE" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -361,7 +496,7 @@
 
  let p = new Person(&quot;yzq&quot;);
  p.name = &quot;aaa&quot;//错误，不能被修改
- p.age=24//错误，不能被修改`
+ p.age=24//错误，不能被修改
 </code></pre>
       
 
@@ -1013,185 +1148,6 @@ transform: skewY(30deg);
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/10/25/css-2D/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-markdown-grammar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/10/22/markdown-grammar/">Markdown语法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/10/22/markdown-grammar/" class="archive-article-date">
-  	<time datetime="2018-10-22T07:30:55.137Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>这些天一直在折腾个人博客，因而接触了Mardown。Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式，无疑为我们的写作提供了便利。</p>
-<h2 id="Markdown的优点"><a href="#Markdown的优点" class="headerlink" title="Markdown的优点"></a>Markdown的优点</h2><p>Markdown具备以下优点：</p>
-<ul>
-<li>纯文本，所以兼容性极强，可以用所有文本编辑器打开；</li>
-<li>让你专注于文字而不是排版；</li>
-<li>格式转换方便，Markdown 的文本你可以轻松转换为 html、电子书等；</li>
-<li>Markdown 的标记语法有极好的可读性。</li>
-</ul>
-<h2 id="HTML兼容"><a href="#HTML兼容" class="headerlink" title="HTML兼容"></a>HTML兼容</h2><p>Markdown其实就是一种text to html的微语法，文本化的书写方式，最终还是由工具转化成html文档加以展示。<br>markdown语法对html标签是兼容的，在写作时可以随意使用html标签组织内容，但对于块级元素(比如:div)和行内元素标签(比如:span)和微语法的结合效果是不一样的:<strong>块级元素标签内markdown语法无效;而行内元素标签内markdown语法有效。</strong></p>
-<h2 id="特殊字符的自动转化"><a href="#特殊字符的自动转化" class="headerlink" title="特殊字符的自动转化"></a>特殊字符的自动转化</h2><p>对于&amp; &lt; 这样的符号在html文档里有特殊意义的，但markdown会根据它们的使用场景进行自动转换，比如:当&lt;用于标签表示时工具不去理会，但是当只用于普通场景(3&lt;5)时会自动转化成对应的实体。</p>
-<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>段落前后默认有空行，如果需要在段落内换行，可敲2个空格加回车</p>
-<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>Markdown里有两种标题形式:</p>
-<p><strong>(1). Setext</strong></p>
-<pre><code># 一级标题 #
-## 二级标题 ##
-### 三级标题 ###
-#### 四级标题 ####
-##### 五级标题 #####
-###### 六级标题 ######
-</code></pre><p><strong>(2). atx</strong></p>
-<pre><code>一级标题
-====
-二级标题
-----
-</code></pre><h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>使用&gt;符号定义应用，可以多层嵌套</p>
-<pre><code>&gt; 外文引用
-&gt; &gt; 外文引用
-</code></pre><p>效果如下：</p>
-<blockquote>
-<p>外文引用</p>
-<blockquote>
-<p>外文引用</p>
-</blockquote>
-</blockquote>
-<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p><strong>(1). 无序列表：</strong>使用* + - 来构造无序列表</p>
-<pre><code>* 列表项目1
-* 列表项目2
-+ 列表项目1
-+ 列表项目2
-- 列表项目1
-- 列表项目2
-</code></pre><p>效果如下：</p>
-<ul>
-<li>列表项目1</li>
-</ul>
-<ul>
-<li>列表项目2</li>
-</ul>
-<p><strong>(2). 有序列表：</strong>使用数字.来构造有序列表</p>
-<pre><code>1 列表项目1
-2 列表项目2
-</code></pre><p>效果如下：</p>
-<ol>
-<li>列表项目1</li>
-<li>列表项目2</li>
-</ol>
-<p><strong>注意：</strong>列表标记符号和项目内容之间须至少1个空格，最多3个空格</p>
-<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>使用反引号`包围代码块，或者缩进4个空格来构造代码块，当代码块作为列表或引用的子元素时，可缩进到5个空格</p>
-<p><strong>注意：</strong>代码块前后须加空行</p>
-<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用多个* - _ 来制造分隔线</p>
-<pre><code>***
----
-___
-</code></pre><h2 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h2><p><strong>(1). 行内形式</strong></p>
-<pre><code>[百度一下，你就知道](http://www.baidu.com &quot;baidu&quot;)
-</code></pre><p>效果如下：</p>
-<p><a href="http://www.baidu.com" title="baidu" target="_blank" rel="noopener">百度一下，你就知道</a></p>
-<p><strong>(2). 参考形式</strong></p>
-<pre><code>[百度一下，你就知道](1)
-[淘宝]()
-[1]: http://www.baidu.com
-[淘宝]: http://www.taobao.com
-</code></pre><p>效果如下：</p>
-<p><a href="1">百度一下，你就知道</a><br><a href="2">淘宝</a><br>[1]: <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> “baidu”<br>[2]: <a href="http://www.taobao.com" target="_blank" rel="noopener">http://www.taobao.com</a> “taobao”</p>
-<p><strong>注意：</strong>参考形式的url定义处和使用处须有空行，一般放在段落后面或文章最尾部</p>
-<h2 id="插入图像"><a href="#插入图像" class="headerlink" title="插入图像"></a>插入图像</h2><p>与链接类似，也分行内形式和参考形式</p>
-<pre><code>![text](url &quot;title&quot;)
-
-![text][id]
-[id]: url &quot;title&quot;
-</code></pre><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>单个*斜体，俩个粗体</p>
-<pre><code>*斜体*
-**粗体**
-***斜体+粗体***
-</code></pre><p>效果如下：  </p>
-<p><em>斜体</em><br><strong>粗体</strong><br><strong><em>斜体+粗体</em></strong></p>
-<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><pre><code>| Left-Aligned  | Center Aligned  | Right Aligned | 
-| :------------ |:---------------:| -----:|
-| col 3 is  | some wordy text | $1600 |
-| col 2 is  | centered|   $12 |
-</code></pre><p>效果如下：  </p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Left-Aligned</th>
-<th style="text-align:center">Center Aligned</th>
-<th style="text-align:right">Right Aligned</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">col 3 is</td>
-<td style="text-align:center">some wordy text</td>
-<td style="text-align:right">$1600</td>
-</tr>
-<tr>
-<td style="text-align:left">col 2 is</td>
-<td style="text-align:center">centered</td>
-<td style="text-align:right">$12</td>
-</tr>
-</tbody>
-</table>
-<p>其中，:—左对齐，:—:中间对齐，—:左对齐;</p>
-<h2 id="Markdown工具"><a href="#Markdown工具" class="headerlink" title="Markdown工具"></a>Markdown工具</h2><p>有许多的markdown语法转换工具，提供便捷书写和实时预览的功能，帮助方便的编辑文档，个人推荐以下，可在线编辑:</p>
-<ul>
-<li><a href="http://mdp.tylingsoft.com/" target="_blank" rel="noopener">Markdown plus</a>: Markdown编辑器，可以支持添加任务列表、emoji、流程图等</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/10/22/markdown-grammar/">展开全文 >></a>
         </p>
       
 
