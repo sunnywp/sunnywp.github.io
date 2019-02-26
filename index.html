@@ -276,6 +276,12 @@
 }
 </code></pre><p><code>clear:both;</code> <code>clear</code>就是清除，<code>both</code>指的是左浮动，右浮动都要清除。意思就是：清除别人对我的影响。</p>
 <p>但是这个方法有个问题就是<code>margin</code>失效了。</p>
+<h3 id="4、使用伪元素-after清除浮动"><a href="#4、使用伪元素-after清除浮动" class="headerlink" title="4、使用伪元素::after清除浮动"></a>4、使用伪元素<code>::after</code>清除浮动</h3><pre><code>.footer-wrap::after {
+  content: &apos;&apos;;
+  clear: both;
+  display: block;
+ }
+</code></pre><p><code>display:block;</code> 对于Chrome浏览器必不可少</p>
 
       
 
