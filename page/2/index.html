@@ -156,6 +156,112 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-front-end-summary" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/12/07/front-end-summary/">前端小技巧总结</a>
+    </h1>
+  
+
+        
+        <a href="/2018/12/07/front-end-summary/" class="archive-article-date">
+  	<time datetime="2018-12-07T05:45:59.051Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-07</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1、防止浏览器自动填充用户名、密码"><a href="#1、防止浏览器自动填充用户名、密码" class="headerlink" title="1、防止浏览器自动填充用户名、密码"></a>1、防止浏览器自动填充用户名、密码</h1><p>浏览器保存密码有时会导致一些奇葩问题，比如本该让用户填写对接参数的地方，浏览器自作主张的给你填上了系统登陆时的帐号与密码，让用户误解是默认参数。所以，在实际项目应用场景中，考虑直接禁掉保存密码功能，实现起来却还是遇到了麻烦。</p>
+<p>   <img src="data:image/png;base64,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" alt="fill"></p>
+<p>查阅相关资料采用下面这种用法，基本解决在Chrome、Firefox浏览器自动填充用户名密码问题。</p>
+<pre><code>用户名：&lt;input type=&apos;text&apos; autocomplete=&apos;off&apos;&gt;
+密码：&lt;input type=&apos;password&apos; autocomplete=&quot;new-password&quot; style=&quot;background-color: #FFFFFF!important;&quot; readonly onfocus=&quot;this.removeAttribute(&apos;readonly&apos;);&quot; onblur=&quot;this.setAttribute(&apos;readonly&apos;,true);&quot;&gt;
+</code></pre><h3 id="Angular应用封装成指令"><a href="#Angular应用封装成指令" class="headerlink" title="Angular应用封装成指令"></a>Angular应用封装成指令</h3><pre><code> import {AfterViewInit, Directive, ElementRef, Input} from &apos;@angular/core&apos;;
+ @Directive({
+  selector: &apos;[noAutoComplete]&apos;,
+  })
+export class NoAutoCompleteDirective implements AfterViewInit {
+  constructor(private ef: ElementRef) {}
+
+ngAfterViewInit() {
+const input = this.ef.nativeElement.querySelector(&apos;input&apos;);
+if (input) {
+      input.setAttribute(&apos;autocomplete&apos;, &apos;new-password&apos;);
+      input.setAttribute(&apos;readonly&apos;,true);
+      input.onfocus = ()=&gt; {
+        input.removeAttribute(&apos;readonly&apos;);
+      };
+      input.onblur = ()=&gt; {
+        input.setAttribute(&apos;readonly&apos;,true);
+      };
+  }
+ }
+}
+</code></pre><p>由于项目采用了selenium实现了前端的自动化测试，因为readonly的缘故直接填值会报错，所以需要尽量模仿用户的真实行为，故在填值之前调用focus()来实现。</p>
+<h1 id="2、nginx匹配规则"><a href="#2、nginx匹配规则" class="headerlink" title="2、nginx匹配规则"></a>2、nginx匹配规则</h1><pre><code>`语法规则： location [=|~|~*|^~] /uri/ { … }
+
+= 开头表示精确匹配
+
+^~ 开头表示uri以某个常规字符串开头，理解为匹配 url路径即可。nginx不对url做编码，因此请求为/static/20%/aa，可以被规则^~ /static/ /aa匹配到（注意是空格）。
+
+~ 开头表示区分大小写的正则匹配
+
+~* 开头表示不区分大小写的正则匹配
+
+!~和!~*分别为区分大小写不匹配及不区分大小写不匹配 的正则
+
+/ 通用匹配，任何请求都会匹配到。
+
+多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）：
+
+首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。`
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/12/07/front-end-summary/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-event-bubble" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
