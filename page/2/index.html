@@ -220,7 +220,14 @@ if (input) {
 多个location配置的情况下匹配顺序为（参考资料而来，还未实际验证，试试就知道了，不必拘泥，仅供参考）：
 
 首先匹配 =，其次匹配^~, 其次是按文件中顺序的正则匹配，最后是交给 / 通用匹配。当有匹配成功时候，停止匹配，按当前匹配规则处理请求。`
-</code></pre>
+</code></pre><h1 id="3、时间参数"><a href="#3、时间参数" class="headerlink" title="3、时间参数"></a>3、时间参数</h1><p>   <code>yyyy-MM-dd HH：mm：ss</code>和<code>yyyy-MM-dd hh：mm：ss</code>之间是有差别的，需要注意：</p>
+<ul>
+<li><code>MM</code>表示月份， </li>
+<li><code>mm</code>表示分钟 </li>
+<li><code>HH</code>表示24小时制  </li>
+<li><code>hh</code>表示12小时制</li>
+</ul>
+
       
 
       
