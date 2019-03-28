@@ -156,6 +156,70 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-angular-ivy" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/27/angular-ivy/">Angular第三代渲染引擎：Ivy</a>
+    </h1>
+  
+
+        
+        <a href="/2019/03/27/angular-ivy/" class="archive-article-date">
+  	<time datetime="2019-03-27T06:53:29.830Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。</p>
+<p>既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。</p>
+<h3 id="第一代渲染引擎Render"><a href="#第一代渲染引擎Render" class="headerlink" title="第一代渲染引擎Render"></a>第一代渲染引擎Render</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/03/27/angular-ivy/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-word" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -182,6 +246,7 @@
 <p><code>rotate</code> vi.旋转;使转动;使轮流，轮换;交替</p>
 <p><code>scale</code> n.规模;比例（尺）</p>
 <p><code>outset</code> n.开始，开端</p>
+<p><code>compose</code> vt.组成，构成;调解;</p>
 
       
 
@@ -991,81 +1056,6 @@ npm_mirror: https://npm.taobao.org/mirrors/npm/
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2018/12/20/linux-order-summary/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-typescript" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/12/13/typescript/">TypeScript语言总结</a>
-    </h1>
-  
-
-        
-        <a href="/2018/12/13/typescript/" class="archive-article-date">
-  	<time datetime="2018-12-13T12:46:57.661Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="readonly修饰符"><a href="#readonly修饰符" class="headerlink" title="readonly修饰符"></a>readonly修饰符</h3><p>使用readonly关键字会将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。且值不能不能被修改，和const类似。<br>最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。</p>
-<pre><code>class Person { 
-     readonly name: string;
-     readonly age: number=23;//必须初始化
-
-     constructor(name:string) {
-        this.name = name;//必须初始化
-     }
-   }
-
- let p = new Person(&quot;yzq&quot;);
- p.name = &quot;aaa&quot;//错误，不能被修改
- p.age=24//错误，不能被修改
-</code></pre>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/12/13/typescript/">展开全文 >></a>
         </p>
       
 

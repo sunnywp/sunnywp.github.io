@@ -6,19 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>JavaScript及TypeScript语言总结 | 莫问前程</title>
+  <title>Angular第三代渲染引擎：Ivy | 莫问前程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="readonly修饰符使用readonly关键字会将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。且值不能不能被修改，和const类似。最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。 class Person {       readonly name: string;">
+  <meta name="description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 第一代渲染引擎Render">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript及TypeScript语言总结">
-<meta property="og:url" content="http://yoursite.com/2018/12/13/typescript/index.html">
+<meta property="og:title" content="Angular第三代渲染引擎：Ivy">
+<meta property="og:url" content="http://yoursite.com/2019/03/27/angular-ivy/index.html">
 <meta property="og:site_name" content="莫问前程">
-<meta property="og:description" content="readonly修饰符使用readonly关键字会将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。且值不能不能被修改，和const类似。最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。 class Person {       readonly name: string;">
+<meta property="og:description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 第一代渲染引擎Render">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T06:10:19.198Z">
+<meta property="og:updated_time" content="2019-03-27T11:07:19.267Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript及TypeScript语言总结">
-<meta name="twitter:description" content="readonly修饰符使用readonly关键字会将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。且值不能不能被修改，和const类似。最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。 class Person {       readonly name: string;">
+<meta name="twitter:title" content="Angular第三代渲染引擎：Ivy">
+<meta name="twitter:description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 第一代渲染引擎Render">
   
     <link rel="alternative" href="/atom.xml" title="莫问前程" type="application/atom+xml">
   
@@ -158,83 +158,29 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-typescript" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-angular-ivy" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      JavaScript及TypeScript语言总结
+      Angular第三代渲染引擎：Ivy
     </h1>
   
 
         
-        <a href="/2018/12/13/typescript/" class="archive-article-date">
-  	<time datetime="2018-12-13T12:46:57.661Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-12-13</time>
+        <a href="/2019/03/27/angular-ivy/" class="archive-article-date">
+  	<time datetime="2019-03-27T06:53:29.830Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-03-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="readonly修饰符"><a href="#readonly修饰符" class="headerlink" title="readonly修饰符"></a>readonly修饰符</h3><p>使用readonly关键字会将属性设置为只读的。 只读属性必须在声明时或构造函数里被初始化。且值不能不能被修改，和const类似。<br>最简单判断该用readonly还是const的方法是看要把它做为变量使用还是做为一个属性。 做为变量使用的话用 const，若做为属性则使用readonly。</p>
-<pre><code>class Person { 
-     readonly name: string;
-     readonly age: number=23;//必须初始化
-
-     constructor(name:string) {
-        this.name = name;//必须初始化
-     }
-   }
-
- let p = new Person(&quot;yzq&quot;);
- p.name = &quot;aaa&quot;//错误，不能被修改
- p.age=24//错误，不能被修改
-</code></pre><h3 id="apply-与call-的区别"><a href="#apply-与call-的区别" class="headerlink" title="apply()与call()的区别"></a>apply()与call()的区别</h3><p>JavaScript中的每一个Function对象都有一个apply()方法和一个call()方法，它们的语法分别为：  </p>
-<pre><code>/*apply()方法*/
-function.apply(thisObj[, argArray])
-
-/*call()方法*/
-function.call(thisObj[, arg1[, arg2[, [,...argN]]]]);
-</code></pre><p>各自定义：</p>
-<ul>
-<li>apply：调用一个对象的一个方法，用另一个对象替换当前对象。例如：B.apply(A, arguments);即A对象应用B对象的方法。</li>
-<li>call：调用一个对象的一个方法，用另一个对象替换当前对象。例如：B.call(A, args1,args2);即A对象调用B对象的方法。</li>
-</ul>
-<p>共同之处：<br>都可以用来代替另一个对象调用一个方法，将一个函数的对象上下文从初始的上下文改变为由thisObj指定的新对象</p>
-<p>不同之处：  </p>
-<ul>
-<li>apply：最多只能有两个参数——新this对象和一个数组argArray。如果给该方法传递多个参数，则把参数都写进这个数组里面，当然，即使只有一个参数，也要写进数组里。如果argArray不是一个有效的数组或arguments对象，那么将导致一个TypeError。如果没有提供argArray和thisObj任何一个参数，那么Global对象将被用作thisObj，并且无法被传递任何参数。</li>
-</ul>
-<ul>
-<li><p>call：它可以接受多个参数，第一个参数与apply一样，后面则是一串参数列表。这个方法主要用在js对象各方法相互调用的时候，使当前this实例指针保持一致，或者在特殊情况下需要改变this指针。如果没有提供thisObj参数，那么 Global 对象被用作thisObj。 </p>
-</li>
-<li><p>实际上，apply和call的功能是一样的，只是传入的参数列表形式不同。</p>
-</li>
-</ul>
-<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><pre><code>function add(a,b){
-  return a+b;  
-}
-function sub(a,b){
-  return a-b;  
-}
-var a1 = add.apply(sub,[4,2]);　　//sub调用add的方法
-var a2 = sub.apply(add,[4,2]);
-console(a1);  //6     
-console(a2);  //2
-
-/*call的用法*/
-var a3 = add.call(sub,4,2);
-</code></pre><h3 id="reduce-方法"><a href="#reduce-方法" class="headerlink" title="reduce()方法"></a>reduce()方法</h3><p>reduce() 方法接收一个函数作为累加器，数组中的每个值（从左到右）开始缩减，最终计算为一个值</p>
-<h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><pre><code>var numbers = [65, 44, 12, 4];
-
-function getSum(total, num) {
-   return total + num;
-}
-
-var a = numbers.reduce(getSum);//125
-</code></pre>
+        <p>Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。</p>
+<p>既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。</p>
+<h3 id="第一代渲染引擎Render"><a href="#第一代渲染引擎Render" class="headerlink" title="第一代渲染引擎Render"></a>第一代渲染引擎Render</h3>
       
 
       
@@ -323,7 +269,7 @@ var a = numbers.reduce(getSum);//125
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2018/12/13/typescript/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/03/27/angular-ivy/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -337,18 +283,9 @@ var a = numbers.reduce(getSum);//125
   
 <nav id="article-nav">
   
-    <a href="/2018/12/20/linux-order-summary/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Linux指令总结
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/12/07/front-end-summary/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">前端小技巧总结</div>
+    <a href="/2019/03/22/word/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">常用词汇</div>
       <i class="icon-circle-right"></i>
     </a>
   
