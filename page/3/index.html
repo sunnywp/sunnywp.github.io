@@ -156,6 +156,310 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-css-2D" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/25/css-2D/">css3 2D转换</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/25/css-2D/" class="archive-article-date">
+  	<time datetime="2018-10-25T10:58:42.085Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通过CSS3的2D转换，我们能够对元素进行移动、缩放、转动、拉长或拉伸。</p>
+<h1 id="Transform"><a href="#Transform" class="headerlink" title="Transform"></a>Transform</h1><pre><code>transform: none|transform-functions;
+</code></pre><p>其中变换方法有如下几类：</p>
+<ul>
+<li>matrix(n,n,n,n,n,n)，定义 2D 转换，使用六个值的矩阵。</li>
+<li>translate(x,y)，定义 2D 转换，沿着 X 和 Y 轴移动元素。</li>
+<li>translateX(n) ，定义 2D 转换，沿着 X 轴移动元素。</li>
+<li>translateY(n) ，定义 2D 转换，沿着 Y 轴移动元素。</li>
+<li>scale(x,y) ，定义 2D 缩放转换，改变元素的宽度和高度。</li>
+<li>scaleX(n) ，定义 2D 缩放转换，改变元素的宽度。</li>
+<li>scaleY(n) ，定义 2D 缩放转换，改变元素的高度。</li>
+<li>rotate(angle) ，定义 2D 旋转，在参数中规定角度。</li>
+<li>skew(x-angle,y-angle) ，定义 2D 倾斜转换，沿着 X 和 Y 轴。</li>
+<li>skewX(angle) ，定义 2D 倾斜转换，沿着 X 轴。</li>
+<li>skewY(angle) ，定义 2D 倾斜转换，沿着 Y 轴。</li>
+</ul>
+<h2 id="1-translate（x-y）"><a href="#1-translate（x-y）" class="headerlink" title="1.translate（x,y）"></a>1.translate（x,y）</h2><p>元素平移，其中</p>
+<ul>
+<li>x是水平移动，正值向右，负值向左</li>
+<li>y是水平移动，正值向下，负值向上</li>
+</ul>
+<p>例子：</p>
+<pre><code>transform: translate(50px,20px);
+-ms-transform: translate(50px,20px);        /* IE 9 */
+-webkit-transform: translate(50px,20px);    /* Safari and Chrome */
+-o-transform: translate(50px,20px);         /* Opera */
+-moz-transform: translate(50px,20px);       /* Firefox */
+</code></pre><h2 id="2-scale-x-y"><a href="#2-scale-x-y" class="headerlink" title="2.scale(x,y)"></a>2.scale(x,y)</h2><p>元素尺寸大小缩放，可为小数，其中</p>
+<ul>
+<li>x是宽度缩放</li>
+<li>y是高度缩放</li>
+</ul>
+<p>例子：</p>
+<pre><code>transform: scale(2,2.4);
+-ms-transform: scale(2,2.4);
+-webkit-transform: scale(2,2.4);
+-o-transform: scale(2,2.4);
+-moz-transform: scale(2,2.4);
+</code></pre><h2 id="3-rotate-angle"><a href="#3-rotate-angle" class="headerlink" title="3.rotate(angle)"></a>3.rotate(angle)</h2><p>元素旋转一定角度，正值沿顺时针旋转，负值沿逆时针旋转  </p>
+<p>例子：</p>
+<pre><code>transform: skewX(30deg);
+-ms-transform: skewX(30deg);
+-webkit-transform: skewX(30deg);
+-o-transform: skewX(30deg);
+-moz-transform: skewX(30deg);
+</code></pre><h2 id="4-skew-x-angle-y-angle"><a href="#4-skew-x-angle-y-angle" class="headerlink" title="4.skew(x-angle,y-angle)"></a>4.skew(x-angle,y-angle)</h2><p>沿着 X 和 Y 轴的 2D 倾斜转换<br>先按照元素两个中轴倾斜固定的角度，再将2根中轴线向两边平移形成</p>
+<pre><code>transform: skewY(30deg);
+-ms-transform: skewY(30deg);
+-webkit-transform: skewY(30deg);
+-o-transform: skewY(30deg);
+-moz-transform: skewY(30deg);
+</code></pre><p>两个中轴只有一根倾斜：</p>
+<pre><code>transform: skewX(30deg);
+-ms-transform: skewX(30deg);
+-webkit-transform: skewX(30deg);
+-o-transform: skewX(30deg);
+-moz-transform: skewX(30deg);
+
+transform: skewY(30deg);
+-ms-transform: skewY(30deg);
+-webkit-transform: skewY(30deg);
+-o-transform: skewY(30deg);
+-moz-transform: skewY(30deg);
+</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/25/css-2D/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-markdown-grammar" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/10/22/markdown-grammar/">Markdown语法</a>
+    </h1>
+  
+
+        
+        <a href="/2018/10/22/markdown-grammar/" class="archive-article-date">
+  	<time datetime="2018-10-22T07:30:55.137Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-10-22</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>这些天一直在折腾个人博客，因而接触了Mardown。Markdown是一种纯文本格式的标记语言。通过简单的标记语法，它可以使普通文本内容具有一定的格式，无疑为我们的写作提供了便利。</p>
+<h2 id="Markdown的优点"><a href="#Markdown的优点" class="headerlink" title="Markdown的优点"></a>Markdown的优点</h2><p>Markdown具备以下优点：</p>
+<ul>
+<li>纯文本，所以兼容性极强，可以用所有文本编辑器打开；</li>
+<li>让你专注于文字而不是排版；</li>
+<li>格式转换方便，Markdown 的文本你可以轻松转换为 html、电子书等；</li>
+<li>Markdown 的标记语法有极好的可读性。</li>
+</ul>
+<h2 id="HTML兼容"><a href="#HTML兼容" class="headerlink" title="HTML兼容"></a>HTML兼容</h2><p>Markdown其实就是一种text to html的微语法，文本化的书写方式，最终还是由工具转化成html文档加以展示。<br>markdown语法对html标签是兼容的，在写作时可以随意使用html标签组织内容，但对于块级元素(比如:div)和行内元素标签(比如:span)和微语法的结合效果是不一样的:<strong>块级元素标签内markdown语法无效;而行内元素标签内markdown语法有效。</strong></p>
+<h2 id="特殊字符的自动转化"><a href="#特殊字符的自动转化" class="headerlink" title="特殊字符的自动转化"></a>特殊字符的自动转化</h2><p>对于&amp; &lt; 这样的符号在html文档里有特殊意义的，但markdown会根据它们的使用场景进行自动转换，比如:当&lt;用于标签表示时工具不去理会，但是当只用于普通场景(3&lt;5)时会自动转化成对应的实体。</p>
+<h2 id="段落"><a href="#段落" class="headerlink" title="段落"></a>段落</h2><p>段落前后默认有空行，如果需要在段落内换行，可敲2个空格加回车</p>
+<h2 id="标题"><a href="#标题" class="headerlink" title="标题"></a>标题</h2><p>Markdown里有两种标题形式:</p>
+<p><strong>(1). Setext</strong></p>
+<pre><code># 一级标题 #
+## 二级标题 ##
+### 三级标题 ###
+#### 四级标题 ####
+##### 五级标题 #####
+###### 六级标题 ######
+</code></pre><p><strong>(2). atx</strong></p>
+<pre><code>一级标题
+====
+二级标题
+----
+</code></pre><h2 id="区块引用"><a href="#区块引用" class="headerlink" title="区块引用"></a>区块引用</h2><p>使用&gt;符号定义应用，可以多层嵌套</p>
+<pre><code>&gt; 外文引用
+&gt; &gt; 外文引用
+</code></pre><p>效果如下：</p>
+<blockquote>
+<p>外文引用</p>
+<blockquote>
+<p>外文引用</p>
+</blockquote>
+</blockquote>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p><strong>(1). 无序列表：</strong>使用* + - 来构造无序列表</p>
+<pre><code>* 列表项目1
+* 列表项目2
++ 列表项目1
++ 列表项目2
+- 列表项目1
+- 列表项目2
+</code></pre><p>效果如下：</p>
+<ul>
+<li>列表项目1</li>
+</ul>
+<ul>
+<li>列表项目2</li>
+</ul>
+<p><strong>(2). 有序列表：</strong>使用数字.来构造有序列表</p>
+<pre><code>1 列表项目1
+2 列表项目2
+</code></pre><p>效果如下：</p>
+<ol>
+<li>列表项目1</li>
+<li>列表项目2</li>
+</ol>
+<p><strong>注意：</strong>列表标记符号和项目内容之间须至少1个空格，最多3个空格</p>
+<h2 id="代码区块"><a href="#代码区块" class="headerlink" title="代码区块"></a>代码区块</h2><p>使用反引号`包围代码块，或者缩进4个空格来构造代码块，当代码块作为列表或引用的子元素时，可缩进到5个空格</p>
+<p><strong>注意：</strong>代码块前后须加空行</p>
+<h2 id="分割线"><a href="#分割线" class="headerlink" title="分割线"></a>分割线</h2><p>使用多个* - _ 来制造分隔线</p>
+<pre><code>***
+---
+___
+</code></pre><h2 id="插入链接"><a href="#插入链接" class="headerlink" title="插入链接"></a>插入链接</h2><p><strong>(1). 行内形式</strong></p>
+<pre><code>[百度一下，你就知道](http://www.baidu.com &quot;baidu&quot;)
+</code></pre><p>效果如下：</p>
+<p><a href="http://www.baidu.com" title="baidu" target="_blank" rel="noopener">百度一下，你就知道</a></p>
+<p><strong>(2). 参考形式</strong></p>
+<pre><code>[百度一下，你就知道](1)
+[淘宝]()
+[1]: http://www.baidu.com
+[淘宝]: http://www.taobao.com
+</code></pre><p>效果如下：</p>
+<p><a href="1">百度一下，你就知道</a><br><a href="2">淘宝</a><br>[1]: <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> “baidu”<br>[2]: <a href="http://www.taobao.com" target="_blank" rel="noopener">http://www.taobao.com</a> “taobao”</p>
+<p><strong>注意：</strong>参考形式的url定义处和使用处须有空行，一般放在段落后面或文章最尾部</p>
+<h2 id="插入图像"><a href="#插入图像" class="headerlink" title="插入图像"></a>插入图像</h2><p>与链接类似，也分行内形式和参考形式</p>
+<pre><code>![text](url &quot;title&quot;)
+
+![text][id]
+[id]: url &quot;title&quot;
+</code></pre><h2 id="字体"><a href="#字体" class="headerlink" title="字体"></a>字体</h2><p>单个*斜体，俩个粗体</p>
+<pre><code>*斜体*
+**粗体**
+***斜体+粗体***
+</code></pre><p>效果如下：  </p>
+<p><em>斜体</em><br><strong>粗体</strong><br><strong><em>斜体+粗体</em></strong></p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><pre><code>| Left-Aligned  | Center Aligned  | Right Aligned | 
+| :------------ |:---------------:| -----:|
+| col 3 is  | some wordy text | $1600 |
+| col 2 is  | centered|   $12 |
+</code></pre><p>效果如下：  </p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Left-Aligned</th>
+<th style="text-align:center">Center Aligned</th>
+<th style="text-align:right">Right Aligned</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">col 3 is</td>
+<td style="text-align:center">some wordy text</td>
+<td style="text-align:right">$1600</td>
+</tr>
+<tr>
+<td style="text-align:left">col 2 is</td>
+<td style="text-align:center">centered</td>
+<td style="text-align:right">$12</td>
+</tr>
+</tbody>
+</table>
+<p>其中，:—左对齐，:—:中间对齐，—:左对齐;</p>
+<h2 id="Markdown工具"><a href="#Markdown工具" class="headerlink" title="Markdown工具"></a>Markdown工具</h2><p>有许多的markdown语法转换工具，提供便捷书写和实时预览的功能，帮助方便的编辑文档，个人推荐以下，可在线编辑:</p>
+<ul>
+<li><a href="http://mdp.tylingsoft.com/" target="_blank" rel="noopener">Markdown plus</a>: Markdown编辑器，可以支持添加任务列表、emoji、流程图等</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/10/22/markdown-grammar/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-website-security-practice" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
