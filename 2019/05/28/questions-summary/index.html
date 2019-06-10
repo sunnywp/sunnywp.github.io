@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="莫问前程">
 <meta property="og:description" content="1、说出几个可以跨域的标签 &amp;lt;img src=xxx&amp;gt;用于打点统计，统计网站可能是其他域 &amp;lt;link href=xxx&amp;gt;可以使用CDN，CDN的也会其他域 &amp;lt;script src=xxx&amp;gt; 可以使用CDN，CDN的也会其他域，且可以可以用于JSONP &amp;lt;iframe src=xxx&amp;gt;  2、html5新特性 语义化标签 增强型表单 视频和音频 Can">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-05-29T11:13:51.583Z">
+<meta property="og:updated_time" content="2019-06-10T12:31:20.827Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见问题总结">
 <meta name="twitter:description" content="1、说出几个可以跨域的标签 &amp;lt;img src=xxx&amp;gt;用于打点统计，统计网站可能是其他域 &amp;lt;link href=xxx&amp;gt;可以使用CDN，CDN的也会其他域 &amp;lt;script src=xxx&amp;gt; 可以使用CDN，CDN的也会其他域，且可以可以用于JSONP &amp;lt;iframe src=xxx&amp;gt;  2、html5新特性 语义化标签 增强型表单 视频和音频 Can">
@@ -209,6 +209,106 @@
         height: 50px; 
         background-color:red;}
 &lt;/style&gt;
+</code></pre><h3 id="3、JS面向对象之公有、私有-、静态方法和属性，以及特权方法"><a href="#3、JS面向对象之公有、私有-、静态方法和属性，以及特权方法" class="headerlink" title="3、JS面向对象之公有、私有 、静态方法和属性，以及特权方法"></a>3、JS面向对象之公有、私有 、静态方法和属性，以及特权方法</h3><p>先看一段代码<br>    function User(name,pass,age){<br>      // 公有属性<br>      this.name=name;<br>      this.pass=pass; </p>
+<pre><code>  //静态属性和方法
+  User.sex=&quot;男&quot;;
+  User.getSex=function(){
+    return this.sex;
+  };
+  // 私有属性
+  var age=age;  
+
+  // 私有方法
+  function privateFun(){  
+    return age;
+  }
+
+  // 特权方法 ： 用来访问私有变量和私有函数的 公有方法
+  this.publicFun=function(){
+    age ++ ;
+    return privateFun();
+ };
+}
+ // 公有方法
+ User.prototype.getName=function(){  
+    return this.name;
+};
+// 调用静态属性
+User.prototype.getSex=function(){
+    return User.sex;
+};
+// 调用公有方法   需要实例化
+var user=new User(&apos;czj&apos;,123456,24);
+console.log(user.getName());  // czj
+console.log(user.publicFun()); // 25
+console.log(user.getSex());  // 男
+// 调用静态方法   不需要实例化
+console.log(User.getSex());  // 男
+console.log(user.__proto__ == User.prototype); // true
+console.log(User.prototype);
+</code></pre><p><strong>公有方法的调用规则</strong></p>
+<ul>
+<li>调用公有方法，需要先实例化对象<br>  var user=new User(‘czj’,123456,24);  </li>
+<li>在公有方法中：通过<code>this</code>调用公有属性和特权方法  </li>
+<li><p>在公有方法中：通过对象本身调用静态方法和属性，不使用<code>this</code> </p>
+<p>  // 调用静态属性<br>  User.prototype.getSex=function(){ </p>
+<pre><code>return User.sex; 
+</code></pre><p>  }; </p>
+</li>
+<li>在公有方法中：不能调用私有方法和属性</li>
+<li><strong>静态方法的调用规则</strong></li>
+<li>调用静态方法：无需实例化对象，对象本身调用即可</li>
+<li>在静态方法中：无法调用公有属性、公有方法、私有方法、私有属性、特权方法和原型属性</li>
+<li><p>静态属性和方法还可以使用 <strong>对象字面量</strong> 来定义</p>
+<p>  var user = {<br>   _init:function(name,age){</p>
+<pre><code>this.name = name;
+this.age = age;
+</code></pre><p>   },<br>   getName:function(){</p>
+<pre><code>return this.name;
+</code></pre><p>   }<br>  }<br>  user._init(‘chenzhijie’,25);<br>  console.log(user.getName()); // chenzhijie</p>
+</li>
+</ul>
+<ul>
+<li><strong>私有</strong>方法和属性</li>
+</ul>
+<ol>
+<li>调用私有方法：对象的私有方法和属性，外部无法访问</li>
+<li>在方法的中： 不能通过this 调用对象的公有方法、公有属性、特权方法， 直接调用即可，静态属性和方法还是需要通过对象本身调用</li>
+</ol>
+<ul>
+<li><strong>特权方法</strong> 的调用规则 </li>
+</ul>
+<ol>
+<li>在特权方法中： 通过this调用公有方法、公有属性</li>
+<li>在特权方法中：通过对象本身调用静态方法和属性</li>
+<li>在特权方法中：可以直接调用私有属性和私有方法</li>
+</ol>
+<h3 id="4、为什么说操作DOM成本比较高"><a href="#4、为什么说操作DOM成本比较高" class="headerlink" title="4、为什么说操作DOM成本比较高"></a>4、为什么说操作DOM成本比较高</h3><p><strong>操作DOM具体的成本，说到底是造成浏览器回流reflow和重绘reflow，从而消耗GPU资源。</strong></p>
+<p>参考文章： <a href="https://www.jianshu.com/p/2f622e748d16" title="DOM操作成本到底高在哪儿？" target="_blank" rel="noopener">DOM操作成本到底高在哪儿？</a></p>
+<h3 id="5、如何判断NAN"><a href="#5、如何判断NAN" class="headerlink" title="5、如何判断NAN"></a>5、如何判断NAN</h3><p>NaN(not a number)，意思是不是一个数字，它与自身不相等。<br>全局函数isNaN()判断是否是NaN，但是有一个问题，isNaN只能判断是不是NaN并不能判断这个变量是否是数字<br>    isNaN(‘a’); true</p>
+<p>这个效果不是我想看到的。为了正确判断是否是NAN，使用isNaN()之前先判断一下变量是否是number类型的<br>    function IsNaN(value) {<br>      return typeof value === ‘number’ &amp;&amp; isNaN(value);<br>     } </p>
+<h3 id="典型代码"><a href="#典型代码" class="headerlink" title="典型代码"></a>典型代码</h3><h4 id="1、请写出输出结果：8"><a href="#1、请写出输出结果：8" class="headerlink" title="1、请写出输出结果：8"></a>1、请写出输出结果：8</h4><pre><code>for(i=0,j=0;i&lt;3,j&lt;5;i++,j++){
+   k = i + j;
+  }
+console.log(k);
+</code></pre><p><strong>这里需要注意，循环继续的判断依据以分号前的最后一项为准，即判断j&lt;5符不符合条件</strong></p>
+<h4 id="2、请写出一个实现js普通数据对象的深度克隆"><a href="#2、请写出一个实现js普通数据对象的深度克隆" class="headerlink" title="2、请写出一个实现js普通数据对象的深度克隆"></a>2、请写出一个实现js普通数据对象的深度克隆</h4><p>(1)使用JSON对象来实现(投机取巧的方式)</p>
+<pre><code>function deepCopy(obj:any) : any {
+    return JSON.parse(JSON.stringify(obj));
+  }
+</code></pre><p>(2)硬刚法 </p>
+<pre><code>function deepClone(obj){
+  let newObj=Array.isArray(obj)?[]:{}
+
+  if(obj&amp;&amp;typeof obj ===&quot;object&quot;){
+    for(let key in obj){
+        if(obj.hasOwnProperty(key)){
+            newObj[key]=(obj &amp;&amp; typeof obj[key]===&apos;object&apos;)?deepClone(obj[key]):obj[key];
+        }
+    }
+ }
+  return newObj
+}
 </code></pre>
       
 
