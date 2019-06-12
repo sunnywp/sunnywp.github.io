@@ -15,7 +15,7 @@
 <meta property="og:site_name" content="莫问前程">
 <meta property="og:description" content="1、说出几个可以跨域的标签 &amp;lt;img src=xxx&amp;gt;用于打点统计，统计网站可能是其他域 &amp;lt;link href=xxx&amp;gt;可以使用CDN，CDN的也会其他域 &amp;lt;script src=xxx&amp;gt; 可以使用CDN，CDN的也会其他域，且可以可以用于JSONP &amp;lt;iframe src=xxx&amp;gt;  2、html5新特性 语义化标签 增强型表单 视频和音频 Can">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-06-10T12:31:20.827Z">
+<meta property="og:updated_time" content="2019-06-12T07:15:15.733Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常见问题总结">
 <meta name="twitter:description" content="1、说出几个可以跨域的标签 &amp;lt;img src=xxx&amp;gt;用于打点统计，统计网站可能是其他域 &amp;lt;link href=xxx&amp;gt;可以使用CDN，CDN的也会其他域 &amp;lt;script src=xxx&amp;gt; 可以使用CDN，CDN的也会其他域，且可以可以用于JSONP &amp;lt;iframe src=xxx&amp;gt;  2、html5新特性 语义化标签 增强型表单 视频和音频 Can">
@@ -287,6 +287,8 @@ this.age = age;
 <p>参考文章： <a href="https://www.jianshu.com/p/2f622e748d16" title="DOM操作成本到底高在哪儿？" target="_blank" rel="noopener">DOM操作成本到底高在哪儿？</a></p>
 <h3 id="5、如何判断NAN"><a href="#5、如何判断NAN" class="headerlink" title="5、如何判断NAN"></a>5、如何判断NAN</h3><p>NaN(not a number)，意思是不是一个数字，它与自身不相等。<br>全局函数isNaN()判断是否是NaN，但是有一个问题，isNaN只能判断是不是NaN并不能判断这个变量是否是数字<br>    isNaN(‘a’); true</p>
 <p>这个效果不是我想看到的。为了正确判断是否是NAN，使用isNaN()之前先判断一下变量是否是number类型的<br>    function IsNaN(value) {<br>      return typeof value === ‘number’ &amp;&amp; isNaN(value);<br>     } </p>
+<h3 id="6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别"><a href="#6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别" class="headerlink" title="6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别"></a>6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别</h3><p>encodeURI 和 decodeURI 函数操作的是完整的 URI；这俩函数假定 URI 中的任何保留字符都有特殊意义，所有不会编码它们。</p>
+<p>encodeURIComponent 和 decodeURIComponent 函数操作的是组成 URI 的个别组件；这俩函数假定任何保留字符都代表普通文本，所以必须编码它们，所以它们（保留字符）出现在一个完整 URI 的组件里面时不会被解释成保留字符了。</p>
 <h3 id="典型代码"><a href="#典型代码" class="headerlink" title="典型代码"></a>典型代码</h3><h4 id="1、请写出输出结果：8"><a href="#1、请写出输出结果：8" class="headerlink" title="1、请写出输出结果：8"></a>1、请写出输出结果：8</h4><pre><code>for(i=0,j=0;i&lt;3,j&lt;5;i++,j++){
    k = i + j;
   }

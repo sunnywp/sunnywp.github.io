@@ -842,6 +842,26 @@ if (input) {
 <li><code>HH</code>表示24小时制  </li>
 <li><code>hh</code>表示12小时制</li>
 </ul>
+<h1 id="4、URL特殊字符需转义"><a href="#4、URL特殊字符需转义" class="headerlink" title="4、URL特殊字符需转义"></a>4、URL特殊字符需转义</h1><p>URL特殊字符需转义 </p>
+<p>1、空格换成加号(+)<br>2、正斜杠(/)分隔目录和子目录<br>3、问号(?)分隔URL和查询<br>4、百分号(%)制定特殊字符<br>5、#号指定书签<br>6、&amp;号分隔参数   </p>
+<p>转义字符的原因： </p>
+<p>如果你的表单使用get方法提交，并且提交的参数中有“&amp;”等特殊符的话，如果不做处理，在service端就会将&amp;后面的作为另外一个参数来看待。例如<br>表单的action为list.jsf?act=go&amp;state=5<br>则提交时通过request.getParameter可以分别取得act和state的值。<br>如果你的本意是act=’go&amp;state=5’这个字符串，那么为了在服务端拿到act的准确值，你必须对&amp;进行转义 </p>
+<p>url转义字符原理： </p>
+<p>将这些特殊的字符转换成ASCII码，格式为：%加字符的ASCII码，即一个百分号%，后面跟对应字符的ASCII（16进制）码值。例如 空格的编码值是”%20”。 </p>
+<p>URL特殊符号及对应的十六进制值编码： </p>
+<ol>
+<li><ul>
+<li>URL 中+号表示空格 %2B </li>
+</ul>
+</li>
+<li>空格 URL中的空格可以用+号或者编码 %20 </li>
+<li>/  分隔目录和子目录 %2F  </li>
+<li>?  分隔实际的 URL 和参数 %3F  </li>
+<li>% 指定特殊字符 %25  </li>
+<li><h1 id="表示书签-23"><a href="#表示书签-23" class="headerlink" title="表示书签 %23"></a>表示书签 %23</h1></li>
+<li>&amp; URL 中指定的参数间的分隔符 %26  </li>
+<li>= URL 中指定参数的值 %3D </li>
+</ol>
 
       
 
