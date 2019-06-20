@@ -287,6 +287,14 @@ this.age = age;
 <p>这个效果不是我想看到的。为了正确判断是否是NAN，使用isNaN()之前先判断一下变量是否是number类型的<br>    function IsNaN(value) {<br>      return typeof value === ‘number’ &amp;&amp; isNaN(value);<br>     } </p>
 <h3 id="6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别"><a href="#6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别" class="headerlink" title="6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别"></a>6、encodeURI、encodeURIComponent、decodeURI、decodeURIComponent的区别</h3><p>encodeURI 和 decodeURI 函数操作的是完整的 URI；这俩函数假定 URI 中的任何保留字符都有特殊意义，所有不会编码它们。</p>
 <p>encodeURIComponent 和 decodeURIComponent 函数操作的是组成 URI 的个别组件；这俩函数假定任何保留字符都代表普通文本，所以必须编码它们，所以它们（保留字符）出现在一个完整 URI 的组件里面时不会被解释成保留字符了。</p>
+<h3 id="7、设计模式"><a href="#7、设计模式" class="headerlink" title="7、设计模式"></a>7、设计模式</h3><p>常见的几种设计模式：    </p>
+<ul>
+<li>发布订阅模式</li>
+<li>中介者模式</li>
+<li>代理模式</li>
+<li>单例模式</li>
+<li>工厂模式<br>参考文章： <a href="https://segmentfault.com/a/1190000010914032?utm_source=tag-newest" title="JS设计模式" target="_blank" rel="noopener">JS设计模式</a></li>
+</ul>
 <h3 id="典型代码"><a href="#典型代码" class="headerlink" title="典型代码"></a>典型代码</h3><h4 id="1、请写出输出结果：8"><a href="#1、请写出输出结果：8" class="headerlink" title="1、请写出输出结果：8"></a>1、请写出输出结果：8</h4><pre><code>for(i=0,j=0;i&lt;3,j&lt;5;i++,j++){
    k = i + j;
   }
