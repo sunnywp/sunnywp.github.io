@@ -779,6 +779,11 @@ npm_mirror: https://npm.taobao.org/mirrors/npm/
 <p>解决办法，直接配置/etc/environment的环境变量</p>
 <pre><code>JAVA_HOME=/usr/local/zxjdk-8u181-linux-x64-b01
 </code></pre><p><strong>重启后生效</strong></p>
+<h1 id="2、Syntax-error-“-“-unexpected-expecting-“fi”"><a href="#2、Syntax-error-“-“-unexpected-expecting-“fi”" class="headerlink" title="2、Syntax error: “(“ unexpected (expecting “fi”)"></a>2、Syntax error: “(“ unexpected (expecting “fi”)</h1><p>在Ubuntu 14上执行脚本时，总是报告某行“Syntax error: “(“ unexpected (expecting “fi”)”错误。查了一下脚本没有发现错误，经过搜索说可能是sh的链接问题。<br>首先到/bin/下面查看当前链接：<code>ls -l /bin/sh</code>，发现sh默认是指向dash的。<br>经过搜索发现dash和bash是不同的（一直把dash看成bash了！！），那么到底是bash还是该是dash呢，Ubuntu安装时默认使用dash，据说dash比bash体积小速度快，但原来在bash下正常运行sh脚本在dash下运行往往有问题，而且提示错误模糊，说明dash的兼容似乎也有问题。</p>
+<p>不过已经有人发现规避问题的方法，就是重新配置dash：</p>
+<pre><code>sudo dpkg-reconfigure dash
+</code></pre><p>会弹出重新配置dash界面，并选择“no”不使用dash。</p>
+<p>再执行脚本，发现问题解决~</p>
 
       
 
