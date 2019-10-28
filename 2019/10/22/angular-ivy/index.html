@@ -6,15 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | 莫问前程</title>
+  <title>Angular第三代渲染引擎：Ivy | 莫问前程</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="莫问前程">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 RenderV2版本中，Angular使用的是基于 Renderer 的抽象指令。这种编译方式确实带来了卓越的性能，但由此带来的明显不便之一是生成代码的大小。  Render2v4 版本中，Angular 引入了 View Engine 的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Angular第三代渲染引擎：Ivy">
+<meta property="og:url" content="http://yoursite.com/2019/10/22/angular-ivy/index.html">
 <meta property="og:site_name" content="莫问前程">
+<meta property="og:description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 RenderV2版本中，Angular使用的是基于 Renderer 的抽象指令。这种编译方式确实带来了卓越的性能，但由此带来的明显不便之一是生成代码的大小。  Render2v4 版本中，Angular 引入了 View Engine 的">
 <meta property="og:locale" content="default">
+<meta property="og:image" content="data:data:image/png;base64,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">
+<meta property="og:updated_time" content="2019-05-06T12:01:37.351Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="莫问前程">
+<meta name="twitter:title" content="Angular第三代渲染引擎：Ivy">
+<meta name="twitter:description" content="Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。 既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。 RenderV2版本中，Angular使用的是基于 Renderer 的抽象指令。这种编译方式确实带来了卓越的性能，但由此带来的明显不便之一是生成代码的大小。  Render2v4 版本中，Angular 引入了 View Engine 的">
+<meta name="twitter:image" content="data:data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArIAAAGECAMAAAD9bDOfAAACc1BMVEUjO1JEm62OfMP///+QpK7///wkPVP//vMlPVE6UGRDnLfFNC/eOzEmPlX///jR9v1tweP5//9inK71///Rxr2Ooq00S2Dx/v7/++iMoKvh9v79//+OfMosQ1n/+e+Ik5PB2t90jJnw49EoQVj+9udFpMzLw7rs/v60ubabfcNbb4A8U2fY2cvbt87//uvk5Mt1hZREWW3Z+v7++/fE2fb//u+3j8WGlaExSF3x8/XbzsG7xctEm7NsfIuh3/R6jpvn+/5vxeXY3N+UfMScqa+/09v57NpEn8J/jJk2T2Sks+uTp7BsnK9/i43f+/798+W5z9ZIqc+lu8GRnahidYVKXW/l5dFam69thJPO7Pjz3NyV0+hfvuDJz9XY2cRQm62y5fbe183LzclDnL1zprPV9P2Kz+jx69tVp76nra/P4vX58++xvuvr6+j46+ZmweOByOJjutlRtNfLzsBlq7++wrebprDz9/vd8vSgrunv3+Tl5d7Vz9v15NGRh8zMxL99sb++u7a97vy85fXU5ei12ufs0drq3s3DpMxwrrunsLlip7ZWaXrm6/bc6va8ye/44+bLxuHy8diQidakkcvXs8qyu8NHpMN9nq9PY3SSKy/G8Pyk1+vj5+nz8eOTmN6mnta0yMar3/Tf2e+bo+Jyt86ItsXBmcWrh8WItb+SnJpLL0C4MS6Z1u/czuS6t+Lt5dixzteoxc7Np8qihMbl5MHFwrustLHqj6QwNkxtKjd+KjOoLi13yOhxv9vxvsqJo7LPOlY7M0f88vSrruKtnc2bjMx3rrzvq7ucsLnkboncVnbkQFfOy+voTG6IvtO/w8aUrA5IAAARU0lEQVR42uzaQYqEMBBG4UAQGqpOOIeYY/Tada5gDhBjoFE30opnGhOZO5TwPnKEf/VSDgAAAAAAAAAA4DYEidPggEdYJlFVESl5cYBxY45aHbNUJY8OsEz0tm1yiw6wLGpzdN0sTXCAZUGb5H1isniCoM36/lmlmRxgWdbq67/Xkyo7wLJBq35VWXupqLOwrU1290kl+V0upFnYNurl7ZuPXOiyMK4WLt9/Lr2fybKwT1Q3f6qK7H4TKQ6wrejR9feNwW83k2VhXtAznfdk9zSTZWHea9JGqphfDrBuDP+TncgFeIal1MkGkiyeY4iFby8AAAAAAAAAAAAAAAAAAAAAwB87Z9OaRhSF4QMv3tbFBIIwaZHByCwsGrRZiFNEBFcpJVD8CG6SRXddS0qh26xEusiikEX7A7oslP6G/qveO3duzpFRgv2AjtxnUafnPvMq+DLM3IR4PB6P5w8JB7QZpf5WVqsZ0WZ21oNpmBmefeLn50vNqL+cBg+p0xc4eLyxfR8BLEnyu1mqgq+0hd30pA98zQzPPqFaFaDfGwGYPaBOLvFoU81OkfKEJLtlMQ3UaAu76bNlFbXM8OwX3/CIiFbgy942ws01Oy41g9YRdquGzJKokLaxq36MmjU8e8bclmcMNB8wyxtrFiAx/1ZwQTvAWf+MY3993VPqtjxzuJu+IA7Iol+VO1axCo3JhhXieEKGITpk4AU2ZZTMYoFPUXlfBQExqXI/UbmJjeTKykBheIpLVtmfwB1p4ksAHyKi4PlhR/WBbkSaJTTaZMMI7VkFJ+5i/YwsvMAmR8ksJ/Ap5T5qtO4H+gCfm7NV4MKvohf6LNPvVJcTjswqmwt0ht9HKC51dy/bJU1U/RKWj3SfVAWa0gi41uMb9NQKesxGcIgScH8L/BpTsii3kDhTRMksfjN7iqVGSvqqgRUNoDklTQhHm6hu9LUJR9rK1vOBzvB/aa+w1HEwW42AbkKaY/O9x1WcE01hLpxDdB9TzxzRUH/P0mgC1/FyQJQObsnhFtgUUTKLhfus96gRSX+Oi7TmV4osr4A3QXwDc5bV5YQj7VU2H8iGp6DUkWKbF1UxeTf5BNOTl7jIHu2DCkLSA30oDfN/3ncok8WJ0uQoEllCcFm2Z9L/hifph+zw5zWDoKoVq8sJR9q1fKAwPAXF3Bg0gQUZWiid9Xpnz8/uiMo4yR7ty+hSdigM+dTf5KdzJ0qTo0hkrb2ZrKz0n6ZlrXPD6rgizVgrVpcTjrRr+UBheApK+vg1Bs5tk65E8TrZ19w0ij2UBle2zM9evMCmiCKRxUKustJHmegm287gC+4cHaeLCUfatXygMTzFxu4YNIDQfKnZ05Rqyq95Zab2UBhc2ehwQfnKsikrKLKEsL2yNEZp2scJicryi9HlhCO3VpYNT0GxlQ2BJ2Re7PVy/n39xgDn7hZVGK5mwZERKZjJysosEUUiSwjbbwzoaam3fDcTn9fWd4iF08WEI7fdGAjDU1BeoWubkHbgPdCP1AAz06p22q0uBRWUykRNfYGSRoiubSzCKErujt6SxS2wyVEySwjuFDq2hWb/Dh1ao45b0jTQcrqccKRdywey4SkmcQOlli0LThL3Oy63aZdLCdHULA8A9HrQXAljCMyIogoyEkpxC2zKKJnlBD4laOCa1vweLKOEdzh6RGM8c/rahCP12rMNgWx4iskYhra9WAILOj0E8IaIXkMzSNfP054djHBwFtO90YBmYT2Ad43cAptrUTLLCnxKCE1bST+owtLmyhomRJkuJvyedq27IdAZnv0hCSPKocKEKGTjL2U9HPW8FKo4isoTtztRx0KFYcAGTx6KZMP/uNbzryi73a2Xj8SOgYMnHs9/whAH04BIrQ5/kGWe21id+61Wz//DL/bt0AZAIAii6CUbrgQMTWBIbgWGCqiOelHHtoB4T349dsYWEUvWUaffcYw2VYGf6PuVkc/6TTgz42xTFQAAAAAAAAAAAAAAAACAlz04EAAAAAAA8n9tBFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVYd/MfpqIojCee49jExJHSmuKLWmUUApuUUESKtEKYhMhVowRsZq6ggpuiPu+gjGgBFwSVBA3fMA9+qTxwSU+GP2TPPfO2BlhbB2RzkydL2k7d+Y8fH7+uL0zt8eWLVu2bNkao0ga9C980vToP4qUjJYZbVrXONWUjWzG27SucaopG9mMt2ld41RTNrIZb9O6xqmmbGQz3qZ1jVNN2chmvE3rGqeaspHNeJvWNU41ZSOb8Tata5xqykY2421a1zjVlI1sxtu0rnGqKRvZjLdpXeNUUzayGW/TusappmxkM96mdY1TTdnIZrxN6xqnmrKRzXib1jVONWUjm/E2/6nxB3fj5BeZFdmT3WVUQwYg2xbXGaqN7B8YD3gAQABUPkmmSBByaw1FthRQPnyJyYm8AjDbHMhGXEUkdag2snqRdW46fQuWnf4WPkGS6kEwN0cZvXudfmT9HQMe4eVAqZAc2ZOlamTzKosNQ7YR8knqUG1kdRqvayJkD4u2FQ+SqWKyOt2zobQju/MlzfMyXA8/okl1RI1sv98wZLO2gWNKqlBtZHUbv3GXkGzI5wdJlaVOdz0Uph3Zp0McWX6QVMtVyOZ5/VVGIbseAEIpQrWR/SvjHFmuvU4QZm2/4Dw1CML+fUGIvic42rANSs5I6d5oACgpInvxvblGKk/n7RdHlulkF0Bz2YfOggEPNL8qBeE4pR86o1d8cLRYQrbFCXic5wXh0EW5PN3Ino0OQ0EOYRFuPgdiEQvYA8Kx5wtj5eVFkcPlTfXqULHsuFc4YyOrB9m3QlFkG9w+BHDngg+EygY8H3MCNIdBXMrTPQtFra7cnO23YNbjHKk8ZACyeeGrxS3g6ESTT7zo76tTLOvpBBDwzDqO7H3YXbUTPwc8/o5eqdxfnF5k65zugAcQwUYPwO5SH9K7D9pJDOBYTgzc5MaK3Fp1qDEsKwe3jawOZLMmO6qrG2DZetiEU4TwhgRcJ9jXWz5blbWzdCv65tRG5mPKe6AwUW4AskfgaPdXHzzyOoZov+8qpXhLhhfFMsRVHEJk+Xq2BV+4MChOlKcX2WHMaRAwQYKBslVrLVkEhRhqNI75uQkLVB0qT/qyvTDQg2zA419ZvfL5qmwMliwSl0rI8tESyJeWXQ8aAL/s8KQ7UW4AsqXCk+7j3d2vGI89znU/kS0oxvlXKOMLg5NXnCAjmyhPK7JbVkBnpwccNVKEPL5hCGFs0XqSrSCrDrXQXsvqQ7bOxWfMSyxPNbJu9naCpxuDZ/X4yU4myg1B9hFFKj+NQBZHWMGR7QmKHUcUZHl5epHNFhe+ePHCi5AmACV1Qcf1c+BWzowM1UZWH7I4L5zCCTWqQjY/McuGWLoBV0Ecv+H4LJEoNwDZFogyOl9qzLJe/yuGbClco0fwxZBNlKcV2b4TBPUW9wqUWTZr/u7zlTVERnZbbr06VFPNsm2fP9erx2ZDdgm/sUVMAXbthMIljOCNwg42j3KeMe8FN7fg3ULAIy48ByW7diyB3Q1uuTydyIaRQlSPC0ruHfIXM4L7JWTZQ1vxEV0OF2kLR/boUxeUX0TInzT3yuXpRDYb80NFghAieyCEtDqmYNC3p1VX341jqNGHk0HcsPXXUNuNQnafB5wAaOIuH74L40DYzC64ACcmrvU+EA+YA9mKc8zsG3a0EY827UPzs/CcWI3Gl9Vn40Wn401kBYD/PRbs8uLJG2EoqJXKx2Z87UwdyN7H/ISjVfKRv6wL356yh1k78fzLPC/AIVhXdQUALva7QLwHQgfF0TW5nOpAVodZoqUYOjqDxKInaEaLlQ3oYEIrcOWTLdsAjq0QbntVocYAoKmeaGqcbCrKmi9s/vygQdq2bwR/DdnSB01x/BeE5fmM9MGcm6aZZRW1nd46etXgbnscJ7IubyUVW/mBXD5G41MnzNUMmKZQ3sDHqlGrBv/Qx97EqLeKfmIlJ6uUcg1kx26W/LkGC7ZevvR5kN1yYXJtOb+EmkzjbjNrsngQP4bZnFrnEndI60Q3258DOENQrT5k14TIaog9z9Ih3chO0AyY6lTqjS6aHFn9ZvVHWudcVot0nD1B9GrcbSKyS6WpNLd2UH5w2YjfpHgBpOFGsAqy28/Bs5EzgB7jM6aM0lRFLF3NgKl+fXCKHTqZRWTHYFZ3pGxxVXIIojeJXo2zTQXZfT7xy3z5yUWdC89lza/0sGV5wHU8aBFkb90+37WZqKUT2Ql/pNVjRra/8969XUNUlxDZMZjVH2lW7HxX5SqiX+NsU0E24BEWeuA14cd4gMie2sgWuMNz2jwWQVbROCK7eJ45uhJ0mDUgUv029SMbCcJxaSnLkXUjsu5WcNRsCYcCrv8EWZUmjtAk1FQergkbaX5v1kyRprKpf5Z1CdeDfGHAZ9wihizegYX2OG4G/pdZNoWmYriW6f1iZs0fqcqmfmT3guP9ZPnJZatPrGHIkmwocbUTG1lJ0+dZqF1x+jwrRKrY1P+Qqy6IuC4BP79B3AjthCGLLxBrzIcsbnM44Vm80Sf4hEqlH2zE7ke1B6ui783Qrpi3k1sUyp/00r/WP4+0NYgBNeUQfTL+J964lVAU3x7zwZo4IYPsoUYFvufghRUhNvfmI86u3FpTIcueHL8maMwp7FD1g43c/cA/uJBZOmyXw+6PvS1OVfsib/UyElnUWVVAvEcutZRCAzdsuXZ94cNGF5SAMCsuXWiqj4R3EMQZSkyyYcskfzVwcsWlqn6wkbsfFX1QaB5k1+F7j0f94+1+v9HILgK3GuAQSS6l0FSNNJcePjb1z2JQ0gJc/lD1g43a/cD/EXMhS+8rTeB8B8xMyPIeudTihaZC9qfMjuxBkiA30Vyj3v0wJ7K0Cz/VrV7ywDhkE91e6h45ubfru9xLJ3d6ydekQnXdGRvZH+ybv0oEMRDGIYsIduJ2gtiJrXeV2B1WguIbaOGWPoEWNsIi/nkBxerU3trKB/CRnJtkk/mIYJYrktubabJzSZHiR0j47peA7MrPlOoYkIX0o1Bkx9UJqF6uyYest71a6chZt+vZuXTb3NVujmW6Rq6rFdkEZCn/ptoEZCH9KBTZx2rrG1UvanIiG2wvcOTY7fIuHXd+jhbiOr0YJF0Mjmg4wIuBTD/KPWUvJ1L1MtxkRDbYXtKR4x+DS8ejmKvlOr3L9nl+IbIi/QBk1z6KQZZUhVtQvbjJh6x0u8CRmzXBpeNRzslvRbbP8+sCkI3SjzN7BDTXxSA7rlbfQfVyTSmnrHfk4JTd51HM1d23nrLJyO7xK/V0g6Ul54NF6QfRe962FDTclIDs0+fk9aEavaHq1TX5ogRve4Ejx26Xd+ls5+do4X1Yp8gmbJzzDwps19nncj5YlH4c7lS2iN78gS3X6GrXGFC9fJMjsJ2Jfi9fne01FY5cY90u59K5rvPnWKaT6xTZRdu46VWgevkmA7JRRY4cuHRy7s5+a5SwqBs381cZyEYVuXRF/C3m31JklxbZyKVTZAeycfNnDQDZyKVTZAey8V926ZgEAACIYSDUv+iHn2ugIVFwQ1IDLPu5LBCemsvimbvw1FwWz9yFp+ayeOYuPDWXxTN34am5LJ65C0/NZfHMXXhqLotn7sJTc1k8cxeemsvimbvw1FwWz7RjDw4EAAAAAID8XxtBVVVVVVVVVVVVVVVVVVVhDw4EAAAAAID8XxtBVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVXag0MCAAAAAEH/XzvCCgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAH1TFYdjKnHxwAAAABJRU5ErkJggg==">
   
     <link rel="alternative" href="/atom.xml" title="莫问前程" type="application/atom+xml">
   
@@ -154,295 +160,184 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-angular-ivy" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Angular第三代渲染引擎：Ivy
+    </h1>
+  
+
+        
+        <a href="/2019/10/22/angular-ivy/" class="archive-article-date">
+  	<time datetime="2019-10-22T08:02:21.642Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Ivy 是 Angular 的第三代「渲染引擎（Render Engine）」，也叫 Render3。</p>
+<p>既然是第三代渲染引擎，那就先说说前两代渲染引擎的实现。</p>
+<h3 id="Render"><a href="#Render" class="headerlink" title="Render"></a>Render</h3><p>V2版本中，Angular使用的是基于 Renderer 的抽象指令。这种编译方式确实带来了卓越的性能，但由此带来的明显不便之一是生成代码的大小。 </p>
+<h3 id="Render2"><a href="#Render2" class="headerlink" title="Render2"></a>Render2</h3><p>v4 版本中，Angular 引入了 View Engine 的概念，建立了公共的运行时部分以减少「编译产物」的大小，而「视图定义」部分也不再使用「编译到指令函数」的策略，而是「编译到工厂函数」，类似于:</p>
+<pre><code>function View_MyComponent() {
+   return viewDef([
+     elementDef(1, &apos;div&apos;, [[&apos;id&apos;, &apos;foo&apos;]]),
+     elementDef(1, &apos;p&apos;, []),
+     textDef([&apos;Hello &apos;]),
+ ], (check, view) =&gt; {
+var comp = view.component;
+const currVal_0 = inlineInterpolate(&apos;Hello, &apos;, comp.name);
+check(view, currVal_0);
+});
+}
+</code></pre><p><img src="data:data:image/png;base64,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" alt="render2"></p>
+<h3 id="Ivy"><a href="#Ivy" class="headerlink" title="Ivy"></a>Ivy</h3><h3 id="如何体验Ivy"><a href="#如何体验Ivy" class="headerlink" title="如何体验Ivy"></a>如何体验Ivy</h3>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/images/weixin.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/word/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.675Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/word/">常用词汇</a>
-    </h1>
-  
+      
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/10/22/angular-ivy/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/website-security-practice/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.672Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
+<nav id="article-nav">
+  
+    <a href="/2019/10/22/angular-on-IE/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Angular工程IE浏览器兼容
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/website-security-practice/">网站安全防卫的一次实践（解决被挂马跳转至博彩页面问题）</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/web-cache/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.671Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/web-cache/">浅析Web缓存</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/typescript/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.670Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/typescript/">JavaScript及TypeScript语言总结</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/transition-and-animation/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.669Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/transition-and-animation/">CSS3 动画</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/shell-summary/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.664Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/shell-summary/">shell脚本总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/questions-summary/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.663Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/questions-summary/">常见问题总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/nvm/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.662Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/nvm/">nvm的使用</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/npm-command/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.661Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/npm-command/">npm指令</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/22/npm-and-yarn/" class="archive-article-date">
-  	<time datetime="2019-10-22T08:02:21.660Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/22/npm-and-yarn/">npm和yarn的区别</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
   
 
 
@@ -466,8 +361,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
